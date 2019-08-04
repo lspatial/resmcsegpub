@@ -12,6 +12,7 @@ setup.py
 ./resmcseg/model/pretrainedmodel.py
 ./resmcseg/model/resizelayer.py
 ./resmcseg/util/__init__.py
+./resmcseg/util/googledloader.py
 ./resmcseg/util/helper.py
 ./resmcseg/util/segmetrics.py
 pybind11/CMakeLists.txt
@@ -56,6 +57,7 @@ resmcseg.egg-info/PKG-INFO
 resmcseg.egg-info/SOURCES.txt
 resmcseg.egg-info/dependency_links.txt
 resmcseg.egg-info/not-zip-safe
+resmcseg.egg-info/requires.txt
 resmcseg.egg-info/top_level.txt
 resmcseg/data/__init__.py
 resmcseg/data/zh17.tif

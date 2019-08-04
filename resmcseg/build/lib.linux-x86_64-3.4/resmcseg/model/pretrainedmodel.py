@@ -1,4 +1,5 @@
-from google_drive_downloader import GoogleDriveDownloader as gdd
+
+from resmcseg.util.googledloader import GoogleDriveDownloader as gdd
 
 def downloadPretrainedModel(dataset,type=None,destination=None):
    """

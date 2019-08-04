@@ -1,0 +1,7 @@
+keras>=2.2.2
+opencv-contrib-python>=3.4.1
+gdal>=2.2.4
+tensorflow
+numpy
+sklearn
+tifffile

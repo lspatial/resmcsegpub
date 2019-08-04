@@ -46,12 +46,13 @@ resmcseg requires a C++11 compliant compiler to be available.
 resmcseg requires installation of Keras with support of Tensorflow as the 
 backend system of deep learning (to support Keras). Also Pandas and Numpy should 
 be installed. 
+Specifics: Keras>=2.2.2; opencv2>=3.4.1,tensorflow,numpy,sklearn, pandas,
+          gdal,tifffile etc.  
 
 ## Use case 
 The homepage of the github for the package, resmcseg provides specific 
 examples for use of the library:  
-https://github.com/lspatial/resmcsegPub 
-
+https://github.com/lspatial/resmcsegpub 
 
 ## License
 
@@ -71,23 +72,18 @@ from resmcseg.model.resizelayer import ResizeLayer
 from resmcseg.model.pretrainedmodel import downloadPretrainedModel
 from resmcseg.util.helper import bce_dice_loss,jaccard_coef,jaccard_coef_int,jaccard_coef1
 from resmcseg.util.helper import onehot_to_rgb,color_dict
-from resmcseg.data import data
-
-def getResImg(resimg):
-    return onehot_to_rgb(resimg, color_dict)
-
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = str('0')
+from resmcseg.data import dload
 
 modelFl='/tmp/model_strwei.h5'
-downloadPretrainedModel('ZURICH',destination=modelFl)
+if not os.path.isfile(modelFl):
+    downloadPretrainedModel('ZURICH',destination=modelFl)
 model = load_model(modelFl,custom_objects={'ResizeLayer': ResizeLayer,'bce_dice_loss':bce_dice_loss,
         'mean_iou':mean_iou,'jaccard_coef':jaccard_coef, 'jaccard_coef1':jaccard_coef1,'miou':miou,
         'jaccard_coef_int':jaccard_coef_int,'mean_iouC': mean_iouC})
 ppre=gResMCSegPre(patchsize=224,bordersize=16,overprop=0.3)
-img, mask = data()
+img, mask = dload()
 imgres = ppre.preAImgMulti(img, model, 9)
-mskImg = getResImg(imgres)
+mskImg = onehot_to_rgb(imgres, color_dict)
 fpath = "/tmp/zurich1img_pre.jpg"
 cv2.imwrite(fpath, cv2.cvtColor(mskImg, cv2.COLOR_RGB2BGR), [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 y_pred = imgres.flatten()
@@ -99,4 +95,4 @@ print("iou : " + str(iou) + '; jacard is ', jacard)
 ```
 ## Collaboration
 
-Welcome to contact Dr. Lianfa Li (Email: lspatial@gmail.com). 
+Welcome to contact Dr. Lianfa Li (Email: lspatial@gmail.com or lilf@lreis.ac.cn). 

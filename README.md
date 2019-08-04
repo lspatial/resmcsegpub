@@ -174,4 +174,4 @@ The following samples are three images for each dataset of the DSTL and Zurich d
 <P style="page-break-before: always">
 Contact
 
-For this library and its relevant complete applications, welcome to contact Dr. Lianfa Li. Email: <lspatial@gmail.com>
+For this library and its relevant complete applications, welcome to contact Dr. Lianfa Li. Email: <lspatial@gmail.com> or <lilf@lreis.ac.cn> 

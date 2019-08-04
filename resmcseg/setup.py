@@ -15,7 +15,7 @@ import io
 with io.open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-__version__ = '0.1.3'
+__version__ = '0.1.65'
 
 class get_pybind_include(object):
     """Helper class to determine the pybind11 include path
@@ -161,7 +161,8 @@ kwargs = dict(
     #packages=['resmcseg'],
     #find_packages(where='.', exclude=(), include=('*',))
     package_dir={'': '.'},
-    install_requires = [],
+    install_requires = ['keras>=2.2.2','opencv-contrib-python>=3.4.1','gdal>=2.2.4',
+                        'tensorflow','numpy','sklearn','tifffile'],
     include_package_data=True,
     package_data={'resmcseg':['data/*.tif']},
     #data_files=[('tif', ['data/zh17.tif', 'data/zh17_gt.tif'])],
