@@ -1,0 +1,7 @@
+include README.md LICENSE
+include docs/*.txt
+include resmcseg/data/*.tif
+
+global-include CMakeLists.txt *.cmake
+recursive-include src *
+recursive-include pybind11/include *.h

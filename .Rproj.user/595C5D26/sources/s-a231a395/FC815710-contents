@@ -1,0 +1,49 @@
+---
+title: "Untitled"
+author: "Lianfa Li"
+date: "2019/8/4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+### Sample images, ground truth and predicted masks  
+The following samples are three images for each dataset of the DSTL and Zurich dataset!
+
+<img src="figs/kldata_premask.png" style="zoom:10%" alt="My captionfsff" /> 
+<img src="figs/zurich_pre_masks.png" style="zoom:13%" alt="s" /> 
+
+sdasdaaaaaaaaaaaaaaaaaaaaaaaaa
+sdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+<p style="float: left; font-size: 9pt; text-align: center; width: 46%;height: 100%; margin-right: auto; margin-bottom: 0.5em;"><img src="figs/kldata_premask.png" style="zoom:13%">DSTL images</p>
+<p style="float: left; font-size: 9pt; text-align: center; width: 54%;height: 100%; margin-right: auto; margin-bottom: 0.5em;"><img src="figs/zurich_pre_masks.png" style="zoom:22%">Zurich images</p>
+
+''
+
+<P style="page-break-before: always">
+\newpage 
+#### For this library and its relevant complete applications, welcome to contact Dr. Lianfa Li. 
+
+<p><a href="mailto:user@example.com">Send email</a></p>
+
+Email: lspatial@gmail.com
