@@ -42,9 +42,21 @@ import resmcseg as seg
 
 ### Architecture
 
-The architecture is based on the encoding-decoding antoencoder. Extensive residual connections were used in and between the encoding and decoding layers to enhance the learning with fusion of multiscale information of the input for semantic segmentation. <img  align="center" src="figs/CNN_architecture.png"  style="zoom:20%"  hspace="2"/>
+The architecture is based on the encoding-decoding antoencoder. Extensive residual connections were used in and between the encoding and decoding layers to enhance the learning with fusion of multiscale information of the input for semantic segmentation. <img  align="center" src="figs/CNN_architecture.png"  style="zoom:30%"  hspace="2"/>
 
 Residual connections have been extended within and between the encoding/decoding layers, thus boosting learning efficiency, and multiscale information of the input via ASPP or resizing has also been fused within the architecture.
+
+### Workflow of implementation
+
+A workflow of implementation under geospatial context is represented here. In this workflow, the predictors from geospatial dataset or/and the other attributes are also considered; re-projection and resampling used to processing geospatial dataset are also included. In total, seven steps are summarized for this workflow graph. <img  align="center" src="figs/workflow.png"  style="zoom:40%"  hspace="2"/>
+
+1.  Input predictors (X): besides the multiband or/and hyperspectral images, potential data sources from other geographical information science (GIS) (e.g., vector data of points, lines and polygons) and attributes database are also considered although not used in the test cases (thus presented in the dash-dot lines in this graph). These data may help improve semantic segmentation and thus is contained in the workflow.
+2.  Preprocessing of the input predictors: preprocessing involves re-projection, resampling of the images at different spatial resolutions using bilinear interpolation to obtain the samples at a consistent target resolution and coordinate system, gridding of vector data, and normalization. For re-projection, resampling and gridding, the raster library (<https://cran.r-project.org/web/packages/raster>) of the R software provides the relevant functionalities. Normalization aims to remove the difference in the value scale between different predictors to improve learning efficiency. The Python’s scikit package (<https://scikit-learn.org>) provides a convenient normalization function.
+3.  Input labels (y): the label data are essential for training of the models. Usually, the label data of vector format (points, lines or polygons) are obtained manually and must be gridded into the masks at the target resolution. A summary for the proportion of pixels for each label class can be conducted in this step.
+4.  Merging of the data, sampling and image augmentation: this involves merging of the predictor and label data (X and y), random split of the training and test samples, patch sampling for the training samples by oversampling or undersampling, and image augmentation. As aforementioned in Section 3.4, patch sampling is to divide a large image into small patches for the purpose of training, and the summary of the pixel proportion for each class can be used to determine a strategy of patch sampling. Then, the training set (both images and masks) was randomly augmented at training time with rotations by 45 degrees, 15-25% zooms/translations, shears, and vertical and horizontal flips.
+5.  Training and testing: this involves construction, training and testing of the models and grid search to obtain optimal hyperparameters (e.g., regularizer, network topology, multiscaling choice, mini batch size, and learning rate). The published Python package of core algorithm, resmcseg, can be used to construct the proposed model with flexibility of different choices of hyperparameters. With different hyperparameters and their combinations, grid search \[85\] can be conducted to find an optimal solution for these hyperparameters.
+6.  Prediction: this involves use of the trained models to predict the land-use mask of the new dataset. In addition, the predicted mask can be converted into the output of vector format for use under geospatial context.
+7.  Pre-trained models in cloud: the trained models can be stored as the pre-trained models in the cloud platform (e.g., Amazon Web Services or Google Cloud), and can be called later for predicting or as the basic models for further training.
 
 ### Construction and training of the models
 
@@ -174,4 +186,4 @@ The following samples are three images for each dataset of the DSTL and Zurich d
 <P style="page-break-before: always">
 Contact
 
-For this library and its relevant complete applications, welcome to contact Dr. Lianfa Li. Email: <lspatial@gmail.com> or <lilf@lreis.ac.cn> 
+For this library and its relevant complete applications, welcome to contact Dr. Lianfa Li. Email: <lspatial@gmail.com>
